@@ -1,59 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Progress</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 2rem 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f3f3f3;
-            overflow-y: auto;
-        }
-        .container {
-            text-align: center;
-            padding: 0 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        h1 {
-            font-size: 2rem;
-            color: #333;
-            margin: 1rem 0;
-        }
-        b {
-            display: block;
-            margin: 1rem 0;
-            font-size: 1.2rem;
-            color: #555;
-        }
-        iframe {
-            margin: 1rem 0;
-            max-width: 560px;
-            width: 100%;
-            height: 315px;
-            border: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>After August - Music</title>
+  <meta name="description" content="After August - Rock, folk, and multi-genre music. Listen on Spotify, Apple Music, and watch music videos.">
+  <meta property="og:title" content="After August - Music">
+  <meta property="og:description" content="Rock, folk, and multi-genre music from After August">
+  <meta property="og:image" content="[hero-image-url]">
+  <meta property="og:url" content="https://after-august.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon/favicon.png" sizes="any">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "After August",
+    "url": "https://after-august.com",
+    "genre": ["Rock", "Folk", "Singer-Songwriter"],
+    "sameAs": [
+      "https://www.youtube.com/@AfterAugust",
+      "https://open.spotify.com/artist/2i6noWJnJQPXPsudoiJuMS",
+      "https://music.apple.com/us/artist/after-august/259370281",
+      "https://soundcloud.com/after-august",
+      "https://www.instagram.com/the_after_august/",
+      "https://www.facebook.com/TheAfterAugust"
+    ]
+  }
+  </script>
 </head>
 <body>
-    <div class="container">
-        <h1>After August's updated website coming soon!</h1>
-        <b> You can find me on <a href="https://www.youtube.com/@AfterAugust">YouTube</a>, <a href="https://open.spotify.com/artist/2i6noWJnJQPXPsudoiJuMS?si=N19PRvQ6S3GcaaLz1WkGJw">Spotify</a>, <a href="https://music.apple.com/us/artist/after-august/259370281">Apple Music</a>, <a href="https://soundcloud.com/after-august">Soundcloud</a>, <a href="https://www.instagram.com/the_after_august/">Instagram</a>, and <a href="https://www.facebook.com/TheAfterAugust">Facebook</a></b>
-        <b>Here's some of my music in the meantime 😊</b>
-        <iframe src="https://www.youtube.com/embed/ZOqTpJmJTiM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/eUYX6vAhdXg?si=3kRXFdcl28j4ASKL" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/xL18hIjUcYA?si=YQYcM0VZuYOkMI_Z" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/tvr4eU62RpQ?si=he-r2K_XBQwdz-R8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/gySkfube44A?si=vkgRNiI_ZMIdJucb" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <header>
+    <div class="container bar">
+      <a href="/" class="brand">
+        <span class="logo-mark" aria-hidden="true">A</span>
+        <span>AFTER AUGUST</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="#platforms">Platforms</a></li>
+          <li><a href="#about">About</a></li>
+          
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <details class="mobile-nav">
+          <summary aria-label="Menu toggle"><span></span><span></span><span></span></summary>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#platforms">Platforms</a></li>
+            <li><a href="#about">About</a></li>
+            
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </details>
+      </nav>
     </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+        <div class="video fade-in">
+          <iframe 
+            src="https://www.youtube.com/embed/ZOqTpJmJTiM"
+            title="Featured Video"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        
+      </div>
+    </section>
+
+    <section id="videos" class="videos">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Videos</h2>
+        </div>
+        <div class="videos-grid">
+          
+          <div class="video fade-in">
+            <iframe src="https://www.youtube.com/embed/eUYX6vAhdXg?si=3kRXFdcl28j4ASKL" title="After August Video 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video fade-in">
+            <iframe src="https://www.youtube.com/embed/xL18hIjUcYA?si=YQYcM0VZuYOkMI_Z" title="After August Video 3" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video fade-in">
+            <iframe src="https://www.youtube.com/embed/hKOSbJGuzpE" title="Bring Your Love To Me" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video fade-in">
+            <iframe src="https://www.youtube.com/embed/MYqZq1Us8aw" title="Twenty Something" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video fade-in">
+            <iframe src="https://www.youtube.com/embed/tvr4eU62RpQ?si=he-r2K_XBQwdz-R8" title="After August Video 4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video fade-in">
+            <iframe src="https://www.youtube.com/embed/gySkfube44A?si=vkgRNiI_ZMIdJucb" title="After August Video 5" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="platforms" class="platforms">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Listen</h2>
+        </div>
+        <div class="platforms-grid">
+          <a class="platform-link fade-in" href="https://www.youtube.com/@AfterAugust" target="_blank" rel="noopener noreferrer">
+            <img class="platform-icon" src="assets/icons/icons8-youtube-material-filled/icons8-youtube-24.svg" alt="YouTube">
+            <div class="platform-label">YouTube</div>
+            <div class="platform-cta">Watch now</div>
+          </a>
+          <a class="platform-link fade-in" href="https://open.spotify.com/artist/2i6noWJnJQPXPsudoiJuMS?si=N19PRvQ6S3GcaaLz1WkGJw" target="_blank" rel="noopener noreferrer">
+            <img class="platform-icon" src="assets/icons/icons8-spotify-material-filled/icons8-spotify-24.svg" alt="Spotify">
+            <div class="platform-label">Spotify</div>
+            <div class="platform-cta">Listen on Spotify</div>
+          </a>
+          <a class="platform-link fade-in" href="https://music.apple.com/us/artist/after-august/259370281" target="_blank" rel="noopener noreferrer">
+            <img class="platform-icon" src="assets/icons/icons8-music-ios-17-filled/icons8-music-50.svg" alt="Apple Music">
+            <div class="platform-label">Apple Music</div>
+            <div class="platform-cta">Listen on Apple Music</div>
+          </a>
+          <a class="platform-link fade-in" href="https://www.instagram.com/the_after_august/" target="_blank" rel="noopener noreferrer">
+            <img class="platform-icon" src="assets/icons/icons8-instagram-material-filled/icons8-instagram-24.svg" alt="Instagram">
+            <div class="platform-label">Instagram</div>
+            <div class="platform-cta">Follow on Instagram</div>
+          </a>
+          <a class="platform-link fade-in" href="https://www.facebook.com/TheAfterAugust" target="_blank" rel="noopener noreferrer">
+            <img class="platform-icon" src="assets/icons/icons8-facebook-material-filled/icons8-facebook-24.svg" alt="Facebook">
+            <div class="platform-label">Facebook</div>
+            <div class="platform-cta">Follow on Facebook</div>
+          </a>
+          <a class="platform-link fade-in" href="https://soundcloud.com/after-august" target="_blank" rel="noopener noreferrer">
+            <img class="platform-icon" src="assets/icons/icons8-soundcloud-ios-17-glyph/icons8-soundcloud-60.svg" alt="SoundCloud">
+            <div class="platform-label">SoundCloud</div>
+            <div class="platform-cta">Listen on SoundCloud</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>This is After August</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-image fade-in">
+            <img src="assets/photos/profile-1.jpg" alt="After August profile">
+          </div>
+          <div class="about-content">
+            <p class="fade-in">The inspiration for the name After August comes from two key components:​</p>
+            <p class="fade-in">It defines me. I was born on August 17th, 1994, and everything after that August has become the incredible journey that is my life.</p>
+            <p class="fade-in">It signifies the importance of remembering the good parts of life, even in hard times. It reminds us to live after the way you would in the summer on a warm, bright day, it reminds us to live "After August".</p>
+            <p class="fade-in">After August looks to create music of all kinds, for people of all kinds. Music that is not limited to any genre, that moves people emotionally in life and loss, happy and sad, summer and winter. Everything is composed, played, recorded, and produced by yours truly (unless noted as a cover). I love music and I want to share that love with the world.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Contact</h2>
+          <p>Let's Connect!</p>
+        </div>
+        <form id="contact-form" class="fade-in">
+          <label>
+            <span class="sr-only">Name</span>
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>
+            <span class="sr-only">Email</span>
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            <span class="sr-only">Subject</span>
+            <input type="text" name="subject" placeholder="Subject">
+          </label>
+          <label>
+            <span class="sr-only">Message</span>
+            <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+          </label>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© 2025 After August</small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
