@@ -2,3 +2,4 @@
 - Add background animation
 - Change profile image & realign text
 - Change font to something more aesthetic
+- Update mobile hero - currently looks like just another video separate from the others
