@@ -1,0 +1,4 @@
+- Update favicon
+- Add background animation
+- Change profile image & realign text
+- Change font to something more aesthetic
