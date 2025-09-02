@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFadeInObserver();
   setupMobileNavCloseOnLink();
   setupContactMailto();
+  setupTwilightParticles();
 });
 
 function setupSmoothScrolling() {
@@ -67,6 +68,68 @@ function setupContactMailto() {
     const body = `Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
     window.location.href = `mailto:afteraugustmusic@gmail.com?subject=${subject}&body=${body}`;
   });
+}
+
+// tsParticles background init
+function setupTwilightParticles() {
+  const targetId = 'aa-tsparticles';
+  if (!document.getElementById(targetId) || !window.tsParticles) return;
+
+  const cs = getComputedStyle(document.documentElement);
+  const v = (name) => cs.getPropertyValue(name).trim();
+  const palette = {
+    bgPrimary: v('--bg-primary') || '#0a0a0a',
+    bgSecondary: v('--bg-secondary') || '#1a1a1a',
+    textPrimary: v('--text-primary') || '#e0e0e0',
+    textSecondary: v('--text-secondary') || '#a0a0a0',
+    accentPrimary: v('--accent-primary') || '#d4a574',
+    accentSecondary: v('--accent-secondary') || '#b8935f',
+    border: v('--border') || '#333333'
+  };
+
+  const isFinePointer = matchMedia('(pointer: fine)').matches && !matchMedia('(pointer: coarse)').matches;
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const options = {
+    background: { color: { value: palette.bgPrimary } },
+    detectRetina: true,
+    fpsLimit: 60,
+    pauseOnBlur: true,
+    motion: { reduce: { value: true, factor: 3 } },
+    interactivity: {
+      events: {
+        onHover: { enable: isFinePointer, mode: 'grab', parallax: { enable: isFinePointer, force: 35, smooth: 12 } },
+        onMove: { enable: isFinePointer, parallax: { enable: isFinePointer, force: 35, smooth: 12 } },
+        onClick: { enable: true, mode: isFinePointer ? 'push' : 'bubble' },
+        resize: true
+      },
+      modes: { grab: { distance: 160, links: { opacity: 0.4 } }, push: { quantity: 3 }, bubble: { distance: 120, size: 3, duration: 0.5, opacity: 0.6 } }
+    },
+    particles: {
+      number: { value: 110, density: { enable: true, area: 800 } },
+      color: { value: [palette.textSecondary, palette.accentPrimary, palette.accentSecondary] },
+      links: { enable: true, distance: 150, color: palette.border, opacity: 0.16, width: 1 },
+      move: { enable: true, direction: 'none', outModes: { default: 'out' }, speed: 0.6 },
+      opacity: { value: 0.35, animation: { enable: true, speed: 0.4, minimumValue: 0.15 } },
+      size: { value: { min: 1, max: 3 }, animation: { enable: true, speed: 2, minimumValue: 0.6 } },
+      twinkle: { particles: { enable: true, frequency: 0.05, opacity: 1 }, lines: { enable: true, frequency: 0.003, opacity: 0.18 } }
+    },
+    responsive: [
+      { maxWidth: 1024, options: { particles: { number: { value: 100 } } } },
+      { maxWidth: 768, options: { particles: { number: { value: 90 }, density: { enable: false }, links: { color: palette.textSecondary, distance: 150, opacity: 0.22, width: 1.2 } } } }
+    ]
+  };
+
+  const reduced = JSON.parse(JSON.stringify(options));
+  reduced.fpsLimit = 45;
+  reduced.motion.reduce = { value: true, factor: 4 };
+  reduced.particles.number.value = Math.round(reduced.particles.number.value * 0.65);
+  reduced.particles.move.speed = 0.35;
+  reduced.interactivity.events.onHover.parallax.enable = false;
+  reduced.particles.twinkle.lines.enable = false;
+  reduced.interactivity.modes.push.quantity = 2;
+
+  tsParticles.load(targetId, prefersReduced ? reduced : options);
 }
 
 
