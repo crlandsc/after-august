@@ -193,19 +193,83 @@ section .section-header p { margin: 0; color: var(--text-secondary); }
 }
 .about p { max-width: 900px; margin: 0 auto var(--space-s) auto; color: var(--text-primary); text-align: justify; }
 /* About layout with image left, text right */
-.about-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-m); align-items: start; }
-.about-image img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+.about-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-m); align-items: start; position: relative; overflow: visible; }
+.about-image { 
+  --profile-scale: 1; 
+  --profile-translate-x: 0px; 
+  --profile-translate-y: 0px; 
+  /* Shadow controls (single focal point + stretch) */
+  --shadow-x: 30%;            /* center X within image bounds */
+  --shadow-y: 50%;            /* center Y within image bounds */
+  --shadow-size: 100%;        /* base diameter relative to image width */
+  --shadow-scale-x: 1.1;        /* horizontal stretch factor */
+  --shadow-scale-y: 1.2;        /* vertical stretch factor */
+  --shadow-alpha: 0.25;       /* peak darkness */
+  --shadow-blur: 20px;        /* blur amount */
+  overflow: visible; 
+  position: relative; 
+}
+.about-image::before {
+  content: "";
+  position: absolute;
+  width: var(--shadow-size);
+  height: var(--shadow-size);
+  border-radius: 50%;
+  left: calc(var(--shadow-x) - (var(--shadow-size) / 2));
+  top: calc(var(--shadow-y) - (var(--shadow-size) / 2));
+  transform-origin: bottom left;
+  transform: translate(var(--profile-translate-x), var(--profile-translate-y)) scale(var(--profile-scale)) scale(var(--shadow-scale-x), var(--shadow-scale-y));
+  /* Gentle two-stop falloff to avoid lobing */
+  background: radial-gradient(circle, rgba(0,0,0,var(--shadow-alpha)) 0%, rgba(0,0,0,0) 75%);
+  filter: blur(var(--shadow-blur));
+  z-index: 0;
+  pointer-events: none;
+}
+.about-image img {
+  width: 100%; height: auto;
+  position: relative; z-index: 1;
+  transform-origin: bottom left;
+  transform: translateZ(0) translate(var(--profile-translate-x), var(--profile-translate-y)) scale(var(--profile-scale));
+}
+/* Dedicated styling for the transparent profile image */
+.profile-photo {
+  display: block;
+  width: clamp(460px, 38vw, 560px);
+  height: auto;
+  margin: 0 auto;
+  border: 0;               /* no border for seamless blend */
+  border-radius: 0;        /* keep natural transparent contour */
+  transform: translateZ(0);
+  /* Soft bottom fade to blend cutoff */
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+}
 /* Ordered list styling within About */
 .about-content ol { padding-left: 1.2rem; margin: 0 0 var(--space-s) 0; }
 .about-content li { margin: 0 0 .5rem 0; text-align: justify; }
-@media (min-width: 900px) {
-  .about-grid { grid-template-columns: 1fr 2fr; }
+@media (min-width: 1000px) {
+  .about-grid { grid-template-columns: 1fr 2fr; align-items: start; }
+  /* Anchor image to bottom of section */
+  .about { position: relative; overflow: visible; }
+  .about-image { position: relative; z-index: 1; align-self: end; margin-bottom: calc(-1 * var(--space-xl)); top: -4rem; }
+  /* Increased overlap: text above image and pulled left */
+  .about-content { position: relative; z-index: 3; margin-left: 10%; padding-left: 0%; }
+  /* Narrow overall width for better composition */
+  .about .container { max-width: 860px; }
+  /* Desktop default independent scale */
+  .about-image { --profile-scale: 1.2; --profile-translate-x: 0px; --profile-translate-y: 50px; }
+}
+
+/* Ground shadow ellipse beneath the image on larger screens */
+/* Remove base shadow ellipse */
+@media (min-width: 700px) {
+  .about-image::after { content: none; }
 }
 
 /* Narrower bounds for About on desktop */
 @media (min-width: 1024px) {
   .hero { padding-top: var(--space-l); padding-bottom: var(--space-l); }
-  .about .container { max-width: 1000px; }
+  .about .container { max-width: 860px; }
 }
 
 /* Social */
