@@ -210,24 +210,18 @@ section .section-header p { margin: 0; color: var(--text-secondary); }
   --shadow-scale-y: 1.2;        /* vertical stretch factor */
   --shadow-alpha: 0.25;       /* peak darkness */
   --shadow-blur: 20px;        /* blur amount */
+  /* Contoured glow following alpha channel, extending beyond bounds */
+  -webkit-filter: drop-shadow(0 5px 35px rgba(212, 165, 116, 0.3));
+  filter: drop-shadow(0 5px 35px rgba(212, 165, 116, 0.3));
+  /* Hardware acceleration for iOS Safari compatibility */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: filter;
   overflow: visible; 
   position: relative; 
 }
 .about-image::before {
-  content: "";
-  position: absolute;
-  width: var(--shadow-size);
-  height: var(--shadow-size);
-  border-radius: 50%;
-  left: calc(var(--shadow-x) - (var(--shadow-size) / 2));
-  top: calc(var(--shadow-y) - (var(--shadow-size) / 2));
-  transform-origin: bottom left;
-  transform: translate(var(--profile-translate-x), var(--profile-translate-y)) scale(var(--profile-scale)) scale(var(--shadow-scale-x), var(--shadow-scale-y));
-  /* Gentle two-stop falloff to avoid lobing */
-  background: radial-gradient(circle, rgba(0,0,0,var(--shadow-alpha)) 0%, rgba(0,0,0,0) 75%);
-  filter: blur(var(--shadow-blur));
-  z-index: 0;
-  pointer-events: none;
+  content: none;
 }
 .about-image img {
   width: 100%; height: auto;
