@@ -1,4 +1,2 @@
 - Make the animation follow the cursor even when hovering overtop of youtube videos (works with other elements)
 - Update favicon
-- Update mobile hero - currently looks like just another video separate from the others
-- Add profile iamge shadow in mobile view. Currently works in desktop view – just copy functionality to mobile view.
