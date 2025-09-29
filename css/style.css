@@ -142,9 +142,10 @@ section .section-header p { margin: 0; color: var(--text-secondary); }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* Hero */
-.hero { padding-top: var(--space-xl); padding-bottom: var(--space-xl); background: transparent; border-top: none; }
+.hero { padding-top: var(--space-l); padding-bottom: var(--space-s); background: transparent; border-top: none; }
 .hero-grid { display: grid; gap: var(--space-l); align-items: center; }
-.hero .video { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; box-shadow: 0 0px 50px rgba(212, 165, 116, 0.4); border: 2px solid var(--accent-primary); }
+.hero .video-wrapper { width: 100%; }
+.hero .video { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; box-shadow: 0 0px 50px rgba(212, 165, 116, 0.4); border: 2px solid var(--accent-primary); position: relative; }
 .hero iframe { width: 100%; height: 100%; border: 0; display: block; }
 .hero .title { text-align: center; }
 .hero .title h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 .5rem 0; }
@@ -161,9 +162,29 @@ section .section-header p { margin: 0; color: var(--text-secondary); }
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
-.videos-grid { display: grid; gap: var(--space-m); grid-template-columns: 1fr; }
-.videos-grid .video { aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: #000; box-shadow: var(--shadow); }
+.videos-grid { display: grid; gap: var(--space-l); grid-template-columns: 1fr; }
+.videos-grid .video-wrapper { width: 100%; }
+.videos-grid .video { 
+  aspect-ratio: 16/9; 
+  border-radius: var(--radius); 
+  overflow: hidden; 
+  border: 2px solid var(--border); 
+  background: #000; 
+  box-shadow: var(--shadow); 
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
 .videos-grid iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* Add ring and glow on hover */
+.videos-grid .video-wrapper:hover .video {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0px 50px rgba(212, 165, 116, 0.4);
+}
+/* Keep ring and glow when video is playing */
+.videos-grid .video.loaded {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0px 50px rgba(212, 165, 116, 0.4);
+}
 @media (min-width: 700px) { .videos-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .videos-grid { grid-template-columns: repeat(3, 1fr); } }
 
@@ -175,8 +196,132 @@ section .section-header p { margin: 0; color: var(--text-secondary); }
   border-top: none;
   padding-top: var(--space-m);
 }
-.album .video { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: #000; box-shadow: var(--shadow); }
+.album .video-wrapper { width: 100%; max-width: 100%; }
+.album .video { 
+  width: 100%; 
+  aspect-ratio: 16/9; 
+  border-radius: var(--radius); 
+  overflow: hidden; 
+  border: 2px solid var(--border); 
+  background: #000; 
+  box-shadow: var(--shadow); 
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
 .album iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* Add ring and glow on hover */
+.album .video-wrapper:hover .video {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0px 50px rgba(212, 165, 116, 0.4);
+}
+/* Keep ring and glow when video is playing */
+.album .video.loaded {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0px 50px rgba(212, 165, 116, 0.4);
+}
+
+/* Video thumbnail and play button styling */
+.video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.video:hover .video-thumbnail {
+  opacity: 0.85;
+}
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  background: rgba(212, 165, 116, 0.95);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.play-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent #0a0a0a;
+}
+.video:hover .play-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(212, 165, 116, 1);
+}
+/* Hide play button when video is loaded */
+.video.loaded .play-button {
+  display: none;
+}
+
+/* Video metadata section */
+.video-meta {
+  padding: var(--space-s) 0 0 0;
+  text-align: center;
+}
+.video-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.video-meta .subtitle {
+  margin: 0.25rem 0 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.25px;
+  line-height: 2;
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.video-wrapper:hover .video-title {
+  color: var(--accent-primary);
+}
+.video-wrapper:hover .subtitle {
+  color: var(--accent-primary);
+}
+/* Keep title and subtitle highlighted when video is playing */
+.video.loaded + .video-meta .video-title {
+  color: var(--accent-primary);
+}
+.video.loaded + .video-meta .subtitle {
+  color: var(--accent-primary);
+}
+/* Larger, more impactful title for hero video */
+.hero .video-meta {
+  padding: var(--space-m) 0 0 0;
+  text-align: center;
+}
+.hero .video-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+/* Increase vertical spacing for hero title on mobile */
+@media (max-width: 767px) {
+  .hero .video-meta {
+    padding: var(--space-xl) 0 0 0;
+  }
+}
 
 /* Platforms */
 .platforms { background: transparent; }
@@ -266,7 +411,9 @@ section .section-header p { margin: 0; color: var(--text-secondary); }
 
 /* Narrower bounds for About on desktop */
 @media (min-width: 1024px) {
-  .hero { padding-top: var(--space-l); padding-bottom: var(--space-l); }
+  .hero { padding-top: var(--space-l); padding-bottom: var(--space-s); }
+  .hero .video-wrapper { max-width: 88%; margin: 0 auto; }
+  .album .video-wrapper { max-width: 88%; margin: 0 auto; }
   .about .container { max-width: 860px; }
 }
 

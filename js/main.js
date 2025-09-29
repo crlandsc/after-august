@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFadeInObserver();
   setupMobileNavCloseOnLink();
   setupContactMailto();
+  setupLazyVideoLoading();
   setupTwilightParticles();
 });
 
@@ -68,6 +69,81 @@ function setupContactMailto() {
     const body = `Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
     window.location.href = `mailto:afteraugustmusic@gmail.com?subject=${subject}&body=${body}`;
   });
+}
+
+function setupLazyVideoLoading() {
+  let currentlyLoadedVideo = null;
+
+  const videoWrappers = document.querySelectorAll('.video-wrapper');
+  videoWrappers.forEach(wrapper => {
+    const video = wrapper.querySelector('.video');
+    const videoMeta = wrapper.querySelector('.video-meta');
+    
+    // Click handler function
+    const handleClick = () => {
+      // If this video is already loaded, do nothing
+      if (video.classList.contains('loaded')) return;
+
+      // Unload any currently playing video
+      if (currentlyLoadedVideo && currentlyLoadedVideo !== video) {
+        unloadVideo(currentlyLoadedVideo);
+      }
+
+      // Load this video
+      loadVideo(video);
+      currentlyLoadedVideo = video;
+    };
+    
+    // Add click listener to video
+    video.addEventListener('click', handleClick);
+    
+    // Add click listener to title/subtitle if they exist
+    if (videoMeta) {
+      videoMeta.addEventListener('click', handleClick);
+    }
+  });
+
+  function loadVideo(videoContainer) {
+    const videoId = videoContainer.dataset.videoId;
+    const videoTitle = videoContainer.dataset.videoTitle || 'Video';
+    
+    // Create iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    iframe.title = videoTitle;
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    iframe.style.display = 'block';
+
+    // Replace thumbnail with iframe
+    const thumbnail = videoContainer.querySelector('.video-thumbnail');
+    if (thumbnail) thumbnail.remove();
+    
+    videoContainer.appendChild(iframe);
+    videoContainer.classList.add('loaded');
+  }
+
+  function unloadVideo(videoContainer) {
+    const videoId = videoContainer.dataset.videoId;
+    const videoTitle = videoContainer.dataset.videoTitle || 'Video';
+    
+    // Remove iframe
+    const iframe = videoContainer.querySelector('iframe');
+    if (iframe) iframe.remove();
+
+    // Restore thumbnail
+    const thumbnail = document.createElement('img');
+    thumbnail.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    thumbnail.alt = videoTitle;
+    thumbnail.className = 'video-thumbnail';
+    
+    videoContainer.insertBefore(thumbnail, videoContainer.firstChild);
+    videoContainer.classList.remove('loaded');
+  }
 }
 
 // tsParticles background init
