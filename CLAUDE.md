@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Static HTML/CSS/JS website for After August (music artist). Hosted on GitHub Pages at after-august.com. No build tools, no frameworks, no package manager.
+Static HTML/CSS/JS website for After August (music artist). Hosted on GitHub Pages at after-august.com (custom domain via Namecheap, CNAME configured). No build tools, no frameworks, no package manager.
 
 ## Development
 
@@ -18,8 +18,8 @@ Static HTML/CSS/JS website for After August (music artist). Hosted on GitHub Pag
 
 Single-page site with three source files:
 
-- **`index.html`** — 7 sections: header (fixed nav), hero (featured video), videos (grid of 10), moments (album video), platforms (streaming links), about (bio + profile photo), contact (mailto form), footer
-- **`css/style.css`** — CSS custom properties drive dark theme (gold accent `#d4a574` on black `#0a0a0a`). Mobile-first responsive with breakpoints at 640/700/768/1000/1024px. Uses CSS Grid, backdrop filters, clamp() sizing.
+- **`index.html`** — 7 sections: header (fixed nav), hero (featured video), videos (grid of 10), moments (album video), platforms (streaming links), about (bio + profile photo), contact (mailto form), footer. SEO via Open Graph, Twitter Card meta tags, and Schema.org MusicGroup JSON-LD in `<head>`.
+- **`css/style.css`** — CSS custom properties drive dark theme (gold accent `#d4a574` on black `#0a0a0a`). Mobile-first responsive with breakpoints at 640/700/768/1000/1024px. Uses CSS Grid, backdrop filters, clamp() sizing. Typography: Anders font (logo mark), Brandon Grotesque (body text).
 - **`js/main.js`** — Vanilla ES6+. Five main systems: smooth scrolling (64px header offset), Intersection Observer fade-ins, mobile nav close-on-link, contact form → mailto encoding, lazy video loading (click-to-play YouTube embeds, one iframe at a time). Also initializes tsParticles (reads CSS custom properties, respects prefers-reduced-motion, fewer particles on mobile).
 
 ## Key Patterns
@@ -36,7 +36,3 @@ Single-page site with three source files:
 **Vertical vs horizontal videos:** All videos default to 16:9 (horizontal). For vertical (9:16) videos, add `data-aspect="vertical"` to the `.video` div. This makes the container smoothly expand from 16:9 to 9:16 when clicked to play, then collapse back when another video is played. Omit the attribute entirely for horizontal videos — no value swap needed. Works on any video (hero, grid, album).
 
 **Theme colors:** Edit `:root` custom properties in `style.css`.
-
-## Reference
-
-- `after-august-spec.md` — Full design spec with color palette, layout principles, content strategy
