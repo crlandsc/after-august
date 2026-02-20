@@ -476,4 +476,16 @@ footer {
   } */
 }
 
-
+/* Vertical video: expand on play */
+.video {
+  transition: aspect-ratio 0.4s ease, max-height 0.4s ease, width 0.4s ease, margin 0.4s ease;
+}
+.video[data-aspect="vertical"].loaded {
+  aspect-ratio: 9/16;
+  max-height: 75vh;
+  width: auto;
+  margin: 0 auto;
+}
+.hero .video[data-aspect="vertical"].loaded {
+  max-height: 85vh;
+}

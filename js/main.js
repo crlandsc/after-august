@@ -106,7 +106,7 @@ function setupLazyVideoLoading() {
   function loadVideo(videoContainer) {
     const videoId = videoContainer.dataset.videoId;
     const videoTitle = videoContainer.dataset.videoTitle || 'Video';
-    
+
     // Create iframe
     const iframe = document.createElement('iframe');
     iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
@@ -122,7 +122,7 @@ function setupLazyVideoLoading() {
     // Replace thumbnail with iframe
     const thumbnail = videoContainer.querySelector('.video-thumbnail');
     if (thumbnail) thumbnail.remove();
-    
+
     videoContainer.appendChild(iframe);
     videoContainer.classList.add('loaded');
   }
@@ -144,6 +144,7 @@ function setupLazyVideoLoading() {
     videoContainer.insertBefore(thumbnail, videoContainer.firstChild);
     videoContainer.classList.remove('loaded');
   }
+
 }
 
 // tsParticles background init
@@ -207,5 +208,4 @@ function setupTwilightParticles() {
 
   tsParticles.load(targetId, prefersReduced ? reduced : options);
 }
-
 
