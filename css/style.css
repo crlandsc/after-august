@@ -476,7 +476,10 @@ footer {
   } */
 }
 
-/* Vertical video: expand on play */
+/* Vertical video: expand on play
+   Add data-aspect="vertical" to any .video div with vertical (9:16) content.
+   On click, the container smoothly transitions from 16:9 to 9:16.
+   Omit the attribute for horizontal videos — 16:9 is the default. */
 .video {
   transition: aspect-ratio 0.4s ease, max-height 0.4s ease, width 0.4s ease, margin 0.4s ease;
 }

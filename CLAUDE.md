@@ -33,6 +33,8 @@ Single-page site with three source files:
 
 **New video:** Copy a `.video-wrapper` block in the `#videos` section, update `data-video-id`, `data-video-title`, thumbnail `src`/`alt`, and `.video-title` text.
 
+**Vertical vs horizontal videos:** All videos default to 16:9 (horizontal). For vertical (9:16) videos, add `data-aspect="vertical"` to the `.video` div. This makes the container smoothly expand from 16:9 to 9:16 when clicked to play, then collapse back when another video is played. Omit the attribute entirely for horizontal videos — no value swap needed. Works on any video (hero, grid, album).
+
 **Theme colors:** Edit `:root` custom properties in `style.css`.
 
 ## Reference

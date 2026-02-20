@@ -207,11 +207,12 @@ after-august.com/
 ## Content Management Workflow
 
 ### Adding New Videos
-1. **Get YouTube embed code** for new video
-2. **Add to videos section** in desired position
-3. **Update featured video** in hero section if needed
-4. **Test responsive behavior**
-5. **Deploy via GitHub Pages**
+1. **Get YouTube video ID** from the URL (e.g. `youtube.com/watch?v=VIDEO_ID`)
+2. **Add to videos section** — copy a `.video-wrapper` block, update `data-video-id`, `data-video-title`, thumbnail URL, alt text, and title
+3. **Vertical vs horizontal** — if the video is vertical (9:16), add `data-aspect="vertical"` to the `.video` div. Omit the attribute for horizontal videos (16:9 is the default). This controls the expand-on-play animation.
+4. **Update featured video** in hero section if needed
+5. **Test responsive behavior**
+6. **Deploy via GitHub Pages**
 
 ### Updating Platform Links
 1. **Update href attributes** in platforms section
