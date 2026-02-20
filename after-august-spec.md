@@ -39,7 +39,7 @@
   - Subtle scroll indicator
 
 ### 2. Music Videos Section
-- **Content**: 5-8 key YouTube video embeds
+- **Content**: 10 YouTube video embeds
 - **Layout**: Responsive grid (3 columns desktop, 2 tablet, 1 mobile)
 - **Elements**:
   - Equal-sized video players
