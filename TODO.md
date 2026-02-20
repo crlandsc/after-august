@@ -1,2 +1,0 @@
-- Make the animation follow the cursor even when hovering overtop of youtube videos (works with other elements)
-- Update favicon
