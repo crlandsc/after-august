@@ -12,6 +12,8 @@ Static HTML/CSS/JS website for After August (music artist). Hosted on GitHub Pag
 
 **Deploy:** Push to `main` — GitHub Actions auto-deploys to GitHub Pages.
 
+**What ships:** only `index.html`, `404.html`, `css/`, `js/` and `assets/` (the workflow's "Assemble site" step). Anything the page needs must live in one of those; docs and config stay out.
+
 **External dependency:** tsParticles v2.12.0 (CDN-loaded for animated background particles).
 
 ## Architecture
